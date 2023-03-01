@@ -2984,5 +2984,40 @@ privatefiles,moodle|/user/files.php';
         upgrade_main_savepoint(true, 2023020800.00);
     }
 
+    if ($oldversion < 2023021700.01) {
+        // Define field pdfexportfont to be added to course.
+        $table = new xmldb_table('course');
+        $field = new xmldb_field('pdfexportfont', XMLDB_TYPE_CHAR, '50', null, false, false, null, 'showcompletionconditions');
+
+        // Conditionally launch add field pdfexportfont.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2023021700.01);
+    }
+
+    if ($oldversion < 2023022000.00) {
+        // Remove grade_report_showquickfeedback, grade_report_enableajax, grade_report_showeyecons,
+        // grade_report_showlocks, grade_report_showanalysisicon preferences for every user.
+        $DB->delete_records('user_preferences', ['name' => 'grade_report_showquickfeedback']);
+        $DB->delete_records('user_preferences', ['name' => 'grade_report_enableajax']);
+        $DB->delete_records('user_preferences', ['name' => 'grade_report_showeyecons']);
+        $DB->delete_records('user_preferences', ['name' => 'grade_report_showlocks']);
+        $DB->delete_records('user_preferences', ['name' => 'grade_report_showanalysisicon']);
+
+        // The grade_report_showquickfeedback, grade_report_enableajax, grade_report_showeyecons,
+        // grade_report_showlocks, grade_report_showanalysisicon settings have been removed.
+        unset_config('grade_report_showquickfeedback');
+        unset_config('grade_report_enableajax');
+        unset_config('grade_report_showeyecons');
+        unset_config('grade_report_showlocks');
+        unset_config('grade_report_showanalysisicon');
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2023022000.00);
+    }
+
     return true;
 }

@@ -11732,7 +11732,7 @@ ul {
   right: 2rem; }
 
 .hasstickyfooter .btn-footer-popover {
-  bottom: calc(1rem + clamp(96px, calc(0.9375rem * 3), calc(0.9375rem * 3))); }
+  bottom: calc(1rem + calc(max(96px, calc(0.9375rem * 3)))); }
 
 .popover.footer .popover-body {
   padding: 0; }
@@ -12549,6 +12549,20 @@ blockquote {
   .activityiconcontainer.interface .activityicon,
   .activityiconcontainer.interface .icon {
     filter: brightness(0) invert(1); }
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 0.7rem; }
+  .icon-box .icon {
+    margin: 0;
+    height: 24px;
+    width: 24px; }
 
 :root {
   --activityadministration: #5d63f6;
@@ -15028,8 +15042,7 @@ span.editinstructions {
     width: 2rem;
     height: 2rem;
     position: relative;
-    left: calc(50% - 1rem);
-    top: calc(50% - 1rem);
+    left: calc(50%);
     opacity: 0;
     visibility: hidden;
     transition: visibility 0.1s;
@@ -15040,8 +15053,8 @@ span.editinstructions {
       width: 1.5rem;
       font-size: 1.5rem;
       position: absolute;
-      left: 0.25rem;
-      top: 0.25rem; }
+      left: calc(0.25rem - 1px);
+      top: calc(0.25rem - 0.5px); }
 
 .activity:not(.dragging) div.divider:hover button,
 .activity:not(.dragging) div.divider:focus button,
@@ -19855,6 +19868,13 @@ p.arrow_button {
 .path-grade-report-singleview .reporttable .dropdown-toggle::after {
   display: none; }
 
+.gradereport-grader-table input[name^="grade"] {
+  width: 80px;
+  display: inline-block; }
+
+.gradereport-grader-table .dropdown-toggle::after {
+  display: none; }
+
 .search-widget .dropdown-menu {
   padding: 0.8rem 1.2rem; }
   .search-widget .dropdown-menu.wide {
@@ -20138,8 +20158,8 @@ body {
   position: fixed;
   right: 0;
   left: 0;
-  height: clamp(96px, calc(0.9375rem * 3), calc(0.9375rem * 3));
-  bottom: calc(clamp(96px, calc(0.9375rem * 3), calc(0.9375rem * 3)) * -1);
+  height: calc(max(96px, calc(0.9375rem * 3)));
+  bottom: calc(calc(max(96px, calc(0.9375rem * 3))) * -1);
   transition: bottom .5s;
   z-index: 1000;
   overflow: hidden;
@@ -20790,7 +20810,7 @@ span[data-flexitour="container"][x-placement="right"], span[data-flexitour="cont
   .hasstickyfooter .drawer-left,
   .hasstickyfooter .drawer-right {
     top: 50px;
-    height: calc(100vh - 50px - clamp(96px, calc(0.9375rem * 3), calc(0.9375rem * 3))); }
+    height: calc(100vh - 50px - calc(max(96px, calc(0.9375rem * 3)))); }
   #page.drawers {
     position: relative;
     overflow-y: auto;
@@ -20817,7 +20837,7 @@ span[data-flexitour="container"][x-placement="right"], span[data-flexitour="cont
       margin-left: 285px;
       margin-right: 315px; }
     #page.drawers.hasstickyfooter {
-      height: calc(100vh - 50px - clamp(96px, calc(0.9375rem * 3), calc(0.9375rem * 3))); } }
+      height: calc(100vh - 50px - calc(max(96px, calc(0.9375rem * 3)))); } }
 
 .drawercontrolbuttons {
   margin-top: 92px; }
@@ -22431,4 +22451,4 @@ body {
   padding-bottom: 0.5rem; }
 
 body.hasstickyfooter #page-footer {
-  padding-bottom: calc(1rem * .5 + clamp(96px, calc(0.9375rem * 3), calc(0.9375rem * 3))); }
+  padding-bottom: calc(1rem * .5 + calc(max(96px, calc(0.9375rem * 3)))); }
